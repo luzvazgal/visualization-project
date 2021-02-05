@@ -13,9 +13,10 @@ function getData(){
 
     let select = d3.select("#countries_list");
 
-    //Adding each country as an option
+    //Adding each country as an option text and value
     countries_list.forEach(country=>{
         
-        select.append("option").text(country);
+        select.append("option").text(country).attr("value", country);
+
     })
 }

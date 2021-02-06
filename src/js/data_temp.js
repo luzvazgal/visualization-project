@@ -17,9 +17,9 @@
 
 data = [
     {
-        Germany: {
-            Years: [2014,2015,2016,2017,2018],
-            Inbound:{
+        name: 'Germany',
+        Years: [2014,2015,2016,2017,2018],
+        Inbound:{
                 Tourist_Inbound: [],
                 Top_Markets: { 
                     Netherlands: [4227.674,4315.047,4466.447,4574.457,4703.307],
@@ -30,7 +30,7 @@ data = [
 
                 }
             },
-            Outbound: {
+        Outbound: {
                 Tourist_Outbound : [],
                 Top_Destinations: {
                     Austria:[10574.871,10544.493,11379.674,11274.997,14395.60324],
@@ -40,13 +40,13 @@ data = [
                     France:[5472.093,4837.612,5158.745,6231.466,6143.330822],
                 }
             }
-}
+
 },
 
 {
-    Spain: {
-        Years: [2014,2015,2016,2017,2018],
-        Inbound:{
+    name: 'Spain',
+    Years: [2014,2015,2016,2017,2018],
+    Inbound:{
             Tourist_Inbound: [],
             Top_Markets: { 
                 United_Kingdom: [15006.744,15764.034,17675.367,18806.776,18523.957],
@@ -57,7 +57,7 @@ data = [
 
             }
         },
-        Outbound: {
+    Outbound: {
             Tourist_Outbound : [],
             Top_Destinations: {
                 France:[2123.701196,1835.837,2146.534,2461.681,2410.44],
@@ -67,13 +67,13 @@ data = [
                 Germany:[688.463,891.04,804.012,803.045,947.6494570000001],
             }
         }
-}
+
 },
 
 {
-    Costa_Rica: {
-        Years: [2014,2015,2016,2017,2018],
-        Inbound:{
+    name: 'Costa_Rica',
+    Years: [2014,2015,2016,2017,2018],
+    Inbound:{
             Tourist_Inbound: [],
             Top_Markets: { 
                 United_States: [997.262,1077.044,1233.277,1199.241,1265.067],
@@ -84,17 +84,17 @@ data = [
 
             }
         },
-        Outbound: {
+    Outbound: {
             Tourist_Outbound : [],
             Top_Destinations: {
                 Central_America:[,449.046,464.245,587.995,583.08],
                 North_America:[,307.789,382.063,370.825,375.637],
                 Panama:[,195.267,193.353,240.983,300.967],
                 United_States:[,229.638,278.666,253.502,250.75],
-                Nicaragua:[,187.682,189.069,220.054,141.178],
+                Nicaragua:[688.463,891.04,804.012,803.045,947.6494570000001],
             }
         }
-}
+
 }
 
 

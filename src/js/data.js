@@ -10,10 +10,12 @@ function getData(){
 
     //Getting countries list from data
     let countries_list = data.map(record=>{
-        console.log(Object.keys(record)[0]);
-        return Object.keys(record)[0];
+        //console.log(Object.keys(record)[0]);
+        return record.name;
     } )
 
+    //Adding empty option
+    select.append("option").text("").attr("value", "");
 
     //Adding each country as an option text and value
     countries_list.forEach(country=>{

@@ -34,7 +34,7 @@ function getData(){
 /**
  * Gets user's selected country information: country, years, and its associated inbound countries and outbound countries
  */
-function getSelectedCountryData(){
+function setSelectedCountryData(){
 
      //Getting user's selection
      selected_country = d3.select("#Country_select").node().value; 

@@ -1,3 +1,7 @@
+/**VARIABLES DEFINITION */
+var selected_country;                       //User selected country
+var inbound_countries, outbound_countries;  //Inbound and outbound countries of user's selected country
+var years;                                  //Years of selected country
 
 
 //Adding countries to select list using D3
@@ -24,4 +28,32 @@ function getData(){
     }
     )
    
+}
+
+
+/**
+ * Gets user's selected country information: country, years, and its associated inbound countries and outbound countries
+ */
+function getSelectedCountryData(){
+
+     //Getting user's selection
+     selected_country = d3.select("#Country_select").node().value; 
+
+     //Getting user's selected country related data
+     let selected_country_data = data.filter( 
+         record => record.name == selected_country
+     )
+     
+ 
+     //Iterating on user's selected country related data to get 
+     selected_country_data.forEach(record =>{
+        years = record.Years; 
+        inbound_countries = record.Inbound;
+        outbound_countries = record.Outbound;
+     }
+     )
+     
+     console.log(years);
+     console.log(inbound_countries);
+     console.log(outbound_countries);
 }

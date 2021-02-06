@@ -52,7 +52,7 @@
 
   <body onload="getData()">
     <div class="container">
-  <header class="blog-header py-3">
+    <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
       
       <div class="col-12 text-center">
@@ -60,7 +60,7 @@
       </div>
       
     </div>
-  </header>
+    </header>
 
 <hr>
 
@@ -91,25 +91,15 @@
     <nav class="navbar navbar-dark bg-dark">
       <div class="row flex-nowrap justify-content-between align-items-center">
       
-        <div class="col-12 text-center">
-
-          
-          <select id="Country_select" class="btn btn-default">
-          
+        <div class="col-12 text-center">    
+          <select id="Country_select" class="btn btn-default" onchange="selectCountry()">
           </select>
         </div>  
 
       </div>
-
-
-                            
-
-      
-    </nav>
      
-      
-
-
+    </nav>
+ 
 <br>
 
 
@@ -120,7 +110,8 @@
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         
         <!-- Container to hold map  -->
-        <h1>Space for the map</h1>
+        
+        <div id="in_out_map"></div>
         
       </div>
     </div>
@@ -146,17 +137,19 @@
   </div>
 </div>
 
-
+<!--JAVASCRIPT REFERENCES-->
+    <script src="https://d3js.org/d3.v6.min.js"></script> 
+    <script src="src/js/config.js"></script>
+    <script src="src/js/data_temp.js"></script>
+    <script src="src/js/data.js"></script>
+    <script src="src/js/in_out_map.js"></script>
 
 <footer class="blog-footer">
   <p>Project built by Gamma Team.</p>
   
 </footer>
 
-<!--JAVASCRIPT REFERENCES-->
-    <script src="src/js/data_temp.js"></script>
-    <script src="src/js/data.js"></script>
-    <script src="src/js/in_out_map.js"></script>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+   
 </body>
 </html>

@@ -48,6 +48,15 @@
  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
  crossorigin=""></script>
 
+ <!--Libries for Plotly-->
+ <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<script src="https://unpkg.com/simple-statistics@5.0.0/dist/simple-statistics.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<!--D3-->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
   </head>
 
   <body onload="getData()">
@@ -119,13 +128,13 @@
 
   <div class="row mb-2">
     <div class="col-md-6">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      
       
         
           <!-- Container to hold graph  -->
-        <h1>Space for the bar graph</h1>
+          <div id='bar_graph'></div>
         
-      </div>
+      
     </div>
     <div class="col-md-6">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -144,6 +153,7 @@
     <script src="../src/js/data_temp.js"></script>
     <script src="../src/js/data.js"></script>
     <script src="../src/js/in_out_map.js"></script>
+    <script src='../src/js/bar_chart.js'></script>
 
    
 

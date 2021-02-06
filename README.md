@@ -13,7 +13,7 @@ Analyzed countries: Australia, Austria, Colombia, Costa Rica, Croatia, Estonia, 
 
 Files taken from: https://data.oecd.org
 
-# Project structure
+## Project structure
 
 * **data/** 
 * **src/js/**

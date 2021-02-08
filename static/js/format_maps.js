@@ -1,6 +1,7 @@
 let already_painted = [];   //To track countries already painted to determine whether they're both inbound and outbound.
-const colors = ['#DE3163','#40E0D0','#FFBF00','#0B5345'];
-const labels = ['Country', 'In', 'Out', 'In/Out'];
+
+let colors = Object.values(colors_dict);
+let labels = Object.keys(colors_dict);
 
 /**
  * Add legend in map to determine colors
@@ -30,46 +31,54 @@ function  addLegend(){
  * @param {geoJson} record 
  * @param {string} type 
  */
-function paint(record, type){
-
-    let color, opacity;
-
-    if(already_painted.includes(record)){
-        color = colors[3];      //green if it's both inbound and outbound
-        opacity = 0.5;
-    }else{
-
-        switch(type){
-            case 'in':
-                opacity = 0.5;
-                color = colors[1];      //blue inbound tourism
-            break;
-
-            case 'out':
-                opacity = 0.5;
-                color = colors[2];      //yellow outbound tourism
-            break;
-
-            default:
-                opacity = 1;
-                color = colors[0];      //red-pink selected country
-            break;
-
-        }
-    }
+function paintCountry(record, type){
 
     let style = {
-        fillColor: color,
+        fillColor: colors_dict[type],
         weight: 2,
-        opacity: opacity,
+        opacity: type=='Country'? 1 : 0.5,
         color: 'white',
         dashArray: '3',
         fillOpacity: 0.9
         };
 
-    return style;
+    return style;   
+}
 
+/**
+ * 
+ * @param {string} map_type 
+ */
+function setMap(map_type){
+
+    let coordinates = [];
+    let zoom;
     
-    
+    if(map_type='in_out'){
+        coordinates = [0,0];
+        zoom = 0.5;
+    }
+
+    let map = L.map(map_type+'_map').setView(coordinates,zoom);
+
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: map_type=='in_out' ? 'mapbox/light-v10': 'mapbox/outdoors-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: MAPBOX_KEY
+    }).addTo(map);
+
+
+    return map;
+}
+
+/**
+ * 
+ */
+function setTileLayer(map_type){
+
     
 }

@@ -1,27 +1,17 @@
 
 //Variables Definition to assigned geoJSON records for selected country, and its corresponding inbound and outbound countries.
-let geoJSON_selected_country;
-let geoJSON_inbound_countries =[]; 
-let geoJSON_outbound_countries = [];
+//let geoJSON_selected_country;
+//let geoJSON_inbound_countries =[]; 
+//let geoJSON_outbound_countries = [];
 
 
 let geoJSON_layer_group= new L.LayerGroup();    //Adding all geoJSON layers in a group
 
 //Map definition
-var in_out_map = L.map('in_out_map').setView([0,0],.5)
-
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/light-v10',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: MAPBOX_KEY
-}).addTo(in_out_map);
+var in_out_map = setMap('in_out');
 
 //Adding legend to map
 addLegend().addTo(in_out_map);
-
 
 //When user changes selection, it will bring selected country
 d3.selectAll("#Country_select").on('change', function(){
@@ -72,7 +62,7 @@ function getGeoJsonData(in_countries_list, out_countries_list){
                 //.addTo(in_out_map);
 
                 //Adding geoJson layer representing a selected country in map
-                geoJSON_layer_group.addLayer(L.geoJson(record, paint(record, '')));
+                geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry(record, labels[0])));
     
                 //Adding record (country) to already_painted array 
                 //already_painted.push(record);
@@ -89,7 +79,7 @@ function getGeoJsonData(in_countries_list, out_countries_list){
                    //paint(record,'in');
 
                    //Adding geoJson layer representing an outbound country in map
-                   geoJSON_layer_group.addLayer(L.geoJson(record, paint(record, 'in')));
+                   geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry(record, labels[1])));
     
                     //Adding record (country) to already_painted array 
                     already_painted.push(record);
@@ -105,32 +95,25 @@ function getGeoJsonData(in_countries_list, out_countries_list){
                 if(geoJson_country == country){
                     //geoJSON_outbound_countries.push(record);
                     //paint(record,'out');
-                    geoJSON_layer_group.addLayer(L.geoJson(record, paint(record, 'out')));
-    
-                    //Adding record (country) to already_painted array 
-                    already_painted.push(record);
+                    if(already_painted.includes(record)){
+                        geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry(record, labels[3])));
+                    }
+                    else{
+                        geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry(record, labels[2])));
+                        //Adding record (country) to already_painted array 
+                        already_painted.push(record);
+                    }           
                 }
             })
         })
 
-        console.log("geoJSON selected");
-        //console.log(geoJSON_selected_country);
-        //console.log(geoJSON_inbound_countries);
-        //console.log(geoJSON_outbound_countries);    
-
         geoJSON_layer_group.addTo(in_out_map);
-        
-
-    
-   
  }
  )
  .catch(function(error) {
      console.log(error);
  })
 }
-
-
 
 
 /**
@@ -150,64 +133,5 @@ function clearData(){
     
 }
 
-/**
- * Paint countries edges
- * Color: '' Selected country
- * Color: '' Inbound
- * Color: '' Outbound
- */
-/*function paintCountries()
-{
-    console.log("entro paint Countries")
-    console.log(geoJSON_selected_country)
 
-    //Adding selected country
-    L.geoJson(geoJSON_selected_country, {style: {
-        fillColor: '#DE3163',
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.9
-    }})
-    .addTo(in_out_map);
-
-
-    //Adding inbound countries
-    geoJSON_inbound_countries.forEach(inbound=>
-    {
-        L.geoJson(inbound, {style: {
-            fillColor: '#40E0D0',
-            weight: 1,
-            opacity: 1,
-            color: 'white',
-            dashArray: '3',
-            fillOpacity: 0.7
-        }})
-        .addTo(in_out_map);
-
-        console.log("in"+inbound.properties.name);
-    }
-    )
-
-    //Adding outbound countries
-    geoJSON_outbound_countries.forEach(outbound=>
-    {
-        L.geoJson(outbound, {style: {
-            fillColor: '#DE3163',
-            weight: 1,
-            opacity: 1,
-            color: 'white',
-            dashArray: '3',
-            fillOpacity: 0.7
-        }})
-        .addTo(in_out_map);
-
-        console.log("out"+outbound.properties.name);
-    }
-    )
-}*/
-
-
-   
 

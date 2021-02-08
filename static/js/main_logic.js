@@ -2,6 +2,7 @@
 var selected_country;                       //User selected country
 var inbound_countries, outbound_countries;  //Inbound and outbound countries of user's selected country
 var years;                                  //Years of selected country
+var coords;                                 //Selected country coordinates
 
 
 /**
@@ -25,15 +26,17 @@ function setCountryData(){
        years = record.Years; 
        inbound_countries = record.Inbound;
        outbound_countries = record.Outbound;
+       coords =record.coords;
     }
     )
     
-    console.log(years);
-    console.log(inbound_countries);
-    console.log(outbound_countries);
+    console.log("COORDS");
+    console.log(coords);
+    //console.log(inbound_countries);
+    //console.log(outbound_countries);
 
 
-} 
+};
 
 //Adding countries to select list using D3
 /**
@@ -61,4 +64,10 @@ function getData(){
    
 }
 
+
+d3.selectAll("#Country_select").on('change', function(){
+    setCountryData();
+    InOutMap_init();
+    TopPlacesMap_init();
+});
 

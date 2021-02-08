@@ -5,23 +5,34 @@
 //let geoJSON_outbound_countries = [];
 
 
-let geoJSON_layer_group= new L.LayerGroup();    //Adding all geoJSON layers in a group
+let geoJSON_layer_group = new L.LayerGroup();    //Adding all geoJSON layers in a group
 
 //Map definition
-var in_out_map = setMap('in_out');
+let in_out_map = L.map('in_out_map').setView(default_coords,default_zoom);
+
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/light-v10',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: MAPBOX_KEY
+}).addTo(in_out_map);
 
 //Adding legend to map
 addLegend().addTo(in_out_map);
 
-//When user changes selection, it will bring selected country
-d3.selectAll("#Country_select").on('change', function(){
 
+//When user changes selection, it will bring selected country
+//d3.selectAll("#Country_select").on('change', function(){
+function InOutMap_init(){
     console.log("entro")
 
     //Clearing preselected information
     clearData();
     //Setting country data
-    setCountryData();
+    //setCountryData();
 
     //Getting inbound and outbond countries as arrays
 
@@ -30,7 +41,7 @@ d3.selectAll("#Country_select").on('change', function(){
     //console.log(out_countries_list); 
 
     
-});
+};
 
 /**
  * Getting geoJSONData according to user's selection

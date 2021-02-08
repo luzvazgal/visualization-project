@@ -9,3 +9,5 @@ let colors_dict = {
 }
 
 
+const default_coords = [0,0];
+const default_zoom = 0.5;

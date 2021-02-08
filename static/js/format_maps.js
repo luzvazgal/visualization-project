@@ -45,40 +45,4 @@ function paintCountry(record, type){
     return style;   
 }
 
-/**
- * 
- * @param {string} map_type 
- */
-function setMap(map_type){
 
-    let coordinates = [];
-    let zoom;
-    
-    if(map_type='in_out'){
-        coordinates = [0,0];
-        zoom = 0.5;
-    }
-
-    let map = L.map(map_type+'_map').setView(coordinates,zoom);
-
-
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: map_type=='in_out' ? 'mapbox/light-v10': 'mapbox/outdoors-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: MAPBOX_KEY
-    }).addTo(map);
-
-
-    return map;
-}
-
-/**
- * 
- */
-function setTileLayer(map_type){
-
-    
-}

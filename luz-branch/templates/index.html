@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Tourism</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+
+    <!-- Bootstrap core CSS -->
+<!--<link href="Static/css/bootstrap.min.css" rel="stylesheet">-->
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<link href="css/style.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/blog.css" rel="stylesheet">
+
+
+    <!--LEAFLET-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+
+    
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+  </head>
+
+  <body onload="getData()">
+    <div class="container">
+    <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      
+      <div class="col-12 text-center">
+        <h1>Inbound and Outbound Tourism</h1>
+      </div>
+      
+    </div>
+    </header>
+
+<hr>
+
+  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 font-italic">Tourism in OECD Countries</h1>
+      <p class="lead my-3">It comprises the activities of persons travelling to and staying in places outside their
+        usual environment for not more than one consecutive year for leisure, business and other
+        purposes, different from the exercise of an activity remunerated from within the place visited.</p>
+      
+      <p class="lead my-3">
+        <ul class="lead my-2">
+          <li>Inbound tourism involves non residents of an economy travelling within the economy of
+            compilation;</li>
+          <li>Outbound tourism involves residents of an economy travelling in a different economic
+            territory.</li>
+        </ul>
+      </p>
+
+      <p class="lead my-3">
+        Below select a country
+      </p>
+       
+    </div>
+  </div>
+
+  
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+      
+        <div class="col-12 text-center">    
+          <select id="Country_select" class="btn btn-default">
+          </select>
+        </div>  
+
+      </div>
+     
+    </nav>
+ 
+<br>
+
+
+
+
+  <div class="row mb-12">
+    <div class="col-md-12">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        
+        <!-- Container to hold map  -->
+        
+        <div id="in_out_map"></div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      
+        
+          <!-- Container to hold graph  -->
+        <h1>Space for the bar graph</h1>
+        
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <!-- Container to hold graph  -->
+        <h1>Space for the result of scraping</h1>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--JAVASCRIPT REFERENCES-->
+    <script src="https://d3js.org/d3.v6.min.js"></script> 
+
+    <script src="../src/js/config.js"></script>
+    <script src="../src/js/data_temp.js"></script>
+    <script src="../src/js/data.js"></script>
+    <script src="../src/js/in_out_map.js"></script>
+
+   
+
+<footer class="blog-footer">
+  <p>Project built by Gamma Team.</p>
+  
+</footer>
+
+
+   
+</body>
+</html>

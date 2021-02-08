@@ -1,5 +1,6 @@
-let colors = ['#DE3163','#40E0D0','#FFBF00','#0B5345'];
 let already_painted = [];   //To track countries already painted to determine whether they're both inbound and outbound.
+const colors = ['#DE3163','#40E0D0','#FFBF00','#0B5345'];
+const labels = ['Country', 'In', 'Out', 'In/Out'];
 
 /**
  * Add legend in map to determine colors
@@ -9,21 +10,17 @@ function  addLegend(){
     let legend = new L.Control({position: 'bottomleft'});
     legend.onAdd = function (in_out_map) {
 
-    let div = L.DomUtil.create('div', 'info legend'),
-        magnitudes = [0, 1, 2, 3, 4, 5];
-        labels = [];
+        //Creating DOM div object to display the legend
+        let div = L.DomUtil.create('div', 'info legend');
+   
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (let i = 0; i < colors.length; i++) {
+            div.innerHTML += '<i style="background:' + colors[i] + '"></i> ' + (labels[i]  + '<br>' );
+         }
 
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (let i = 0; i < magnitudes.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + getColor(magnitudes[i]) + '"></i> ' +
-            magnitudes[i] + (magnitudes[i + 1] ? '&ndash;' + magnitudes[i + 1] + '<br>' : '+');
+        return div;
     }
-
-    return div;
-
-    legend.addTo(mymap);
-}
+    return legend;
 }
 
 
@@ -45,12 +42,12 @@ function paint(record, type){
         switch(type){
             case 'in':
                 opacity = 0.5;
-                color = colors[1];      //yellow inbound tourism
+                color = colors[1];      //blue inbound tourism
             break;
 
             case 'out':
                 opacity = 0.5;
-                color = colors[2];      //blue outbound tourism
+                color = colors[2];      //yellow outbound tourism
             break;
 
             default:

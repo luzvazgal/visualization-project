@@ -19,6 +19,9 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: MAPBOX_KEY
 }).addTo(in_out_map);
 
+//Adding legend to map
+addLegend().addTo(in_out_map);
+
 
 //When user changes selection, it will bring selected country
 d3.selectAll("#Country_select").on('change', function(){
@@ -32,9 +35,11 @@ d3.selectAll("#Country_select").on('change', function(){
 
     //Getting inbound and outbond countries as arrays
 
-   getGeoJsonData(Object.keys(inbound_countries.Top_Markets), Object.keys(outbound_countries.Top_Destinations));
+    getGeoJsonData(Object.keys(inbound_countries.Top_Markets), Object.keys(outbound_countries.Top_Destinations));
     //console.log(in_countries_list);
     //console.log(out_countries_list); 
+
+    
 });
 
 /**
@@ -51,10 +56,12 @@ function getGeoJsonData(in_countries_list, out_countries_list){
         //console.log("Features "+geoJsondata.features);
  
         //Getting geoJSON records from selected country, inbound and outbound countries.
-        let geoJson_selected= geoJsondata.features.map(record=>{
+        geoJsondata.features.map(record=>{
             
             //Current geoJSON country
             geoJson_country = record.properties.name;
+
+            if (geoJson_country == 'United States of America') geoJson_country = 'United States';
         
             //if current geoJson country equals selected country, assign geoJSON object to geoJSON_selected_country
             if(geoJson_country == selected_country.replace('_', ' ')){
@@ -107,15 +114,14 @@ function getGeoJsonData(in_countries_list, out_countries_list){
         })
 
         console.log("geoJSON selected");
-        console.log(geoJSON_selected_country);
+        //console.log(geoJSON_selected_country);
         //console.log(geoJSON_inbound_countries);
         //console.log(geoJSON_outbound_countries);    
 
         geoJSON_layer_group.addTo(in_out_map);
         
 
-    //Paint the country's edge 
-   //paintCountries();
+    
    
  }
  )

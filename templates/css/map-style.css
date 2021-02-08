@@ -1,0 +1,17 @@
+.legend {
+    line-height: 13px;
+    color: #555;
+    background-color: white;
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+  }
+  .legend i {
+    width: 10px;
+    height: 10px;
+    float: left;
+    margin-right: 5px;
+    opacity: 0.7;
+  
+  }

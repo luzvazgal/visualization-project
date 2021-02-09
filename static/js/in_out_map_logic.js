@@ -1,6 +1,6 @@
 
 //Variables Definition to assigned geoJSON records for selected country, and its corresponding inbound and outbound countries.
-//let geoJSON_selected_country;
+let geoJSON_selected_country;
 //let geoJSON_inbound_countries =[]; 
 //let geoJSON_outbound_countries = [];
 
@@ -26,7 +26,7 @@ addLegend().addTo(in_out_map);
 
 //When user changes selection, it will bring selected country
 //d3.selectAll("#Country_select").on('change', function(){
-function InOutMap_init(){
+async function InOutMap_init(){
     console.log("entro")
 
     //Clearing preselected information
@@ -38,9 +38,10 @@ function InOutMap_init(){
 
     getGeoJsonData(Object.keys(inbound_countries.Top_Markets), Object.keys(outbound_countries.Top_Destinations));
     //console.log(in_countries_list);
-    //console.log(out_countries_list); 
+    console.log("despuès geoJSON"); 
 
-    
+    //return geoJSON_selected_country;
+
 };
 
 /**
@@ -65,10 +66,10 @@ function getGeoJsonData(in_countries_list, out_countries_list){
             if (geoJson_country == 'United States of America') geoJson_country = 'United States';
         
             //if current geoJson country equals selected country, assign geoJSON object to geoJSON_selected_country
-            if(geoJson_country == selected_country.replace('_', ' ')){
+            if(geoJson_country == selected_country.replace('_', ' ')){        
+               geoJSON_selected_country = record;
 
-            
-               //geoJSON_selected_country = record;
+               console.log("geo json selected country");
                 //paint(record,'');
                 //.addTo(in_out_map);
 
@@ -132,14 +133,14 @@ function getGeoJsonData(in_countries_list, out_countries_list){
  */
 function clearData(){
     
-   //console.log("CLEAR DATA antes")
+   console.log("CLEAR DATA antes")
    // console.log(geoJSON_layer_group)
     already_painted = [];
 
     geoJSON_layer_group.clearLayers();
     in_out_map.removeLayer(geoJSON_layer_group);
 
-    //console.log("CLEAR DATA despues")
+    console.log("CLEAR DATA despues")
    // console.log(geoJSON_layer_group)
     
 }

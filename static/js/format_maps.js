@@ -33,6 +33,8 @@ function  addLegend(){
  */
 function paintCountry(record, type){
 
+    console.log("paint country");
+
     let style = {
         fillColor: colors_dict[type],
         weight: 2,

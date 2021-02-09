@@ -99,6 +99,57 @@ data = [
     coords: [8.3570095,-87.0533537]
 
 }
-
-
 ]
+
+
+top_places_data = [{'country': ['Germany',
+  'Germany',
+  'Germany',
+  'Germany',
+  'Germany'],
+ 'city': ['Berlin', 'Munich', 'Frankfurt', 'Cologne', 'Hamburg'],
+ 'title': ['Brandenburg Gate',
+  'Residenz Palace',
+  'Goethe House',
+  'Cologne Cathedral',
+  'Reeperbahn'],
+ 'coordinates': [{'lat': 52.5162778, 'lng': 13.3755154}, 
+  {'lat': 48.1418014, 'lng': 11.5772973},
+  {'lat': 50.1113448, 'lng': 8.6754209},
+  {'lat': 450.9412818, 'lng': 6.9560927},
+  {'lat': 53.549573, 'lng': 9.9604257}]},
+
+  {'country': ['Spain',
+  'Spain',
+  'Spain',
+  'Spain',
+  'Spain'],
+ 'city': ['Barcelona', 'Madrid', 'Madrid', 'Madrid', 'Seville'],
+ 'title': ['Sagrada Familia',
+  'Royal Palace',
+  'Prado Museum',
+  'El Retiro',
+  'Royal Alcazar of Seville'],
+ 'coordinates': [{'lat': 41.4059837, 'lng': 2.1686392}, 
+  {'lat': 40.4179591, 'lng': -3.7165007},
+  {'lat': 40.4137859, 'lng': -3.6943158},
+  {'lat': 40.4152647, 'lng': -3.6866882},
+  {'lat': 37.3830561, 'lng': -5.9924144}]},
+
+  {'country': ['Costa Rica',
+  'Costa Rica',
+  'Costa Rica',
+  'Costa Rica',
+  'Costa Rica'],
+ 'city': ['San Jose', 'Quepos', 'Monteverde', 'San Carlos', 'Seville'],
+ 'title': ['Jade Museum',
+  'Manuel Antonio National Park',
+  'Monteverde Cloud forest',
+  'Arenal Volcano',
+  'Tamarindo'],
+ 'coordinates': [{'lat': 9.9332252, 'lng': -84.0749349}, 
+  {'lat': 9.3923133, 'lng': -84.1391766},
+  {'lat': 10.2856851, 'lng': -84.8885279},
+  {'lat': 10.462647, 'lng': -84.7119342},
+  {'lat': 10.3009096, 'lng': -85.8468247}]}
+];

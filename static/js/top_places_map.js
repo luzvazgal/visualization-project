@@ -3,9 +3,7 @@
 var top_places_map = L.map('top_places_map').setView(default_coords,default_zoom);
 
 //Layer group to add all Popups related to Top Places
-let top_places_layer_group = new L.LayerGroup();    //Adding all geoJSON layers in a group
-
-
+let top_places_cluster = new L.LayerGroup();    //Adding all geoJSON layers in a group
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -21,7 +19,11 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 //When user changes selection, it will bring selected country
 //d3.selectAll("#Country_select").on('change', function(){
 async function TopPlacesMap_init(){
-    console.log("entro Top Places")
+    //console.log("entro Top Places")
+    //top_places_cluster = new L.MarkerClusterGroup();
+     
+    //Clearing preselected information
+     clear_Map();
 
     //Setting country data
     //setTopPlaces_CountryMap();
@@ -30,26 +32,30 @@ async function TopPlacesMap_init(){
     //Iterating on Country's top places to get their info: place, city, coordinates
     add_Top_Places();
 
-    //Clearing preselected information
-    clear_Map();
+   
 };
 
 /**
- * 
+ * Adding Top Places to map
  */
 function add_Top_Places(){
 
-    country_top_places.places.forEach( record=>{
-        
-        let message = '<p><b>Place: </b>'+record.place+'<br><b>City: '+record.city+'</b> </p>';
+    console.log("Coordinates TP")
+    
 
-        L.popup()
-        .setLatLng(L.latLng(record.coordinates))
-        .setContent(message)
-        .openOn(top_places_map)
+    country_top_places.places.forEach( record=>{
+
+       // console.log(record.coordinates)
+        let marker = L.marker(record.coordinates);
+        let message = '<p><b>Place: </b>'+record.place+'<br><b>City: </b>'+record.city+'</p>';
+
+        //marker.bindPopup(message).openPopup();
+        marker.bindPopup(message).openPopup();
+        marker.addTo(top_places_cluster);
     }
     )
 
+   top_places_cluster.addTo(top_places_map);
 }
 
 /**
@@ -57,7 +63,7 @@ function add_Top_Places(){
  */
 function clear_Map(){
      
-    top_places_layer_group.clearLayers();
-    top_places_map.removeLayer(top_places_layer_group);
+    top_places_cluster.clearLayers();
+    top_places_map.removeLayer(top_places_cluster);
  }
 

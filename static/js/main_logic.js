@@ -23,16 +23,16 @@ function setCountryData(){
     )
     
     //Iterating on user's selected country related data to get inbound/outbound countries
-    //selected_country_data.forEach(record =>{
-    years = selected_country_data.Years; 
-    inbound_countries = selected_country_data.Inbound;
-    outbound_countries = selected_country_data.Outbound;
-    coords = selected_country_data.coords;
-    //}
-    //)
+    selected_country_data.forEach(record =>{
+        years = record.Years; 
+        inbound_countries = record.Inbound;
+        outbound_countries = record.Outbound;
+        coords = record.coords;
+    }
+    )
   
-    console.log("COORDS");
-    console.log(coords);
+    //console.log("COORDS");
+    //console.log(coords);
     //console.log(inbound_countries);
     //console.log(outbound_countries);
 
@@ -42,10 +42,26 @@ function setCountryData(){
 
 function setCountryTopPlaces(){
 
+    console.log(top_places_data[0])
+
     //Get selected country's top places
-    let country_tp = top_places.filter(
-        record => top_places['country'][0] == selected_country
-    )
+   /* let country_tp = top_places_data.filter(
+        record => {return selected_country == record['country'][0]}
+    )*/
+
+    let country_tp = [];
+
+    for(let i=0; i<top_places_data.length;i++){
+        if(top_places_data[i]['country'][0]== selected_country){
+            country_tp = top_places_data[i];
+            break;
+        }
+    }
+
+   /*top_places_data.forEach(
+        record => {console.log(record['country'][0]); console.log(selected_country)}
+*/
+
 
     //Reacommodating top places data as dictionary 
     country_top_places = {

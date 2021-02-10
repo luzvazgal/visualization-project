@@ -1,0 +1,99 @@
+/**VARIABLES DEFINITION */
+var selected_country;                       //User selected country
+var inbound_countries, outbound_countries;  //Inbound and outbound countries of user's selected country
+var years;                                  //Years of selected country
+var coords;                                 //Selected country coordinates
+//var country_top_places;                     //Selected country top places
+var index;
+
+
+
+/**
+ * Gets user's selected country information: country, years, and its associated inbound countries and outbound countries
+ */
+//d3.selectAll("#Country_select").on('change', function(){
+function setCountryData(){
+
+    //Getting user's selection
+    //selected_country = d3.select(this).property('value'); 
+    selected_country = d3.select('#Country_select').property('value'); 
+
+    //Getting user's selected country related data
+    let selected_country_data = data.filter( 
+        record => record.name == selected_country
+    )
+    
+    //Iterating on user's selected country related data to get inbound/outbound countries
+    selected_country_data.forEach(record =>{
+        years = record['years']; 
+        inbound_countries = record['top_markets'];
+        outbound_countries = record['top_destinations'];
+    }
+    )
+
+   
+}
+
+
+//Adding countries to select list using D3
+/**
+ * Getting countries list to add them into drop-down menu for user's selection
+ */
+function getData(){
+
+    let select = d3.select("#Country_select");
+
+    //Getting countries list from data
+    let countries_list = data.map(record=>{
+
+        //console.log(Object.keys(record)[0]);
+        return record['name'];
+    } )
+
+    //Adding empty option
+    select.append("option").text("").attr("value", "");
+
+    //Adding each country as an option text and value
+    countries_list.forEach(country=>{
+        
+        select.append("option").text(country).attr("value", country);
+    }
+    )
+   
+}
+
+//Event listener. When user chooses a country from list
+d3.selectAll("#Country_select").on('change', function(){
+
+   //Sets all country info to be consumed according to country selected
+    setCountryData( );
+
+     //Setting selected country coordinates from JSON collection
+     d3.json('../../data/coords.json').then(coordsJSON=>{
+    
+        for(let i=0; i<coordsJSON.length; i++){
+            if(coordsJSON[i].name == selected_country){
+                coords = [coordsJSON[i].latitude, coordsJSON[i].longitude] ;
+                break;
+            }
+        }
+         //Draws bar chart
+        bargraph(true);
+
+        //Draws Inbound/outbound countries map
+        InOutMap_init();
+
+        //Adds top places from country to map
+        TopPlacesMap_init();
+
+        }   
+    )
+    .catch(error=>console.log(error))
+
+   
+    
+    
+});
+
+
+

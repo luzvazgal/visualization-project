@@ -1,47 +1,53 @@
-console.log('ok')
 
 
-const data_bar=data_flask
+/**
+ * Displaying barchart according to user's selection.
+ * @param {boolean} is_selected  True: user has done a selection; false, it's the initial load.
+ */
+function bargraph(is_selected){
 
-//princiapal graph
+    
+    let inbound=[];
+    let outbound=[];
+    let country;
 
-console.group(data)
+    //If index == -1, it will show the bar chart without data; otherwise, it will display info
+   if(is_selected){
 
-function bargraph(index){
+        country=selected_country
 
-   
 
-    let country=data_bar[index].name 
-    let years=data_bar[index].years;
+        //Get numbers of top markets
+    
+        let dict_1=Object.values(inbound_countries)
+        x_list_2=[]
 
-    //Get numbers of top markets
-    let dict_1=Object.values(data_bar[index].top_markets)
-    x_list_2=[]
+        //Summarizing visitors per year: 2014,2015,2016,2017,2018
+        inbound.push(dict_1.map(rec=>{return rec[0]}).reduce((a, b) => a + b, 0));  //2014 sum
+        inbound.push(dict_1.map(rec=>{return rec[1]}).reduce((a, b) => a + b, 0));  //2015 sum
+        inbound.push(dict_1.map(rec=>{return rec[2]}).reduce((a, b) => a + b, 0));
+        inbound.push(dict_1.map(rec=>{return rec[3]}).reduce((a, b) => a + b, 0));
+        inbound.push(dict_1.map(rec=>{return rec[4]}).reduce((a, b) => a + b, 0));  //2018 sum
 
-    for(i=0;i<5;i++){
-        x_list_1=[]
-        for(j=0;j<5;j++){
-            x_list_1.push(dict_1[j][i])            
-            }
-        x_list_2.push(x_list_1.reduce((a,b)=>a+b,0))
-    };
 
-    let inbound=x_list_2;
+        //Get numbers of top destinations
+    
+        let dict_2 = Object.values(outbound_countries);
 
-    //Get numbers of top destinations
-    let dict_2=Object.values(data_bar[index].top_destinations)
-    x_list_3=[]
+        //Summarizing travelers per year: 2014,2015,2016,2017,2018
+        outbound.push(dict_2.map(rec=>{return rec[0]}).reduce((a, b) => a + b, 0)); //2014 sum
+        outbound.push(dict_2.map(rec=>{return rec[1]}).reduce((a, b) => a + b, 0));
+        outbound.push(dict_2.map(rec=>{return rec[2]}).reduce((a, b) => a + b, 0));
+        outbound.push(dict_2.map(rec=>{return rec[3]}).reduce((a, b) => a + b, 0));
+        outbound.push(dict_2.map(rec=>{return rec[4]}).reduce((a, b) => a + b, 0)); //2018 sum
 
-    for(i=0;i<5;i++){
-        x_list_4=[]
-        for(j=0;j<5;j++){
-            x_list_4.push(dict_2[j][i])            
-            }
-        x_list_3.push(x_list_1.reduce((a,b)=>a+b,0))
-    };
 
-    let outbound=x_list_3
+   }else{
+       country = '';
+       years = [2014,2015,2016,2017,2018]
+   }
 
+    
 
     let trace1_Bar={
         x:years,
@@ -97,23 +103,5 @@ function bargraph(index){
 };
 
 //Load page
-bargraph(0)
+bargraph(false) //Not displaying anything
 
-
-
-//Change of selection of country
-d3.selectAll('#Country_select')
-    .on("change", function(){
-        let opt_sel=d3.select(this).property('value')
-        
-
-        
-        for (i=0;i<data_bar.length;i++) {
-            if(data_bar[i].name===opt_sel){
-                let newIndex=i
-                bargraph(newIndex)
-            }}
-       
-            console.log(opt_sel)    
-            
-    });

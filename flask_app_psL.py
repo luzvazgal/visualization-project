@@ -34,7 +34,7 @@ def index():
             item,
             upsert=True
         )
-    
+    #the output of the info is strange need to verify
 
 
    # coords_dict=app1_psL.coordinates()

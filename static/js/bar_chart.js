@@ -1,7 +1,7 @@
 console.log('ok')
 
 
-const data_bar=data
+const data_bar=data_flask
 
 //princiapal graph
 

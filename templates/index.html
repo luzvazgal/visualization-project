@@ -50,8 +50,14 @@
  crossorigin=""></script>
 
   </head>
+<script>
+var data_flask='{{countries}}'
+// var other='{{coordenates}}'
+</script>
 
-  <body onload="getData()">
+
+<!-- onload="getData()" -->
+  <body>
     <div class="container">
     <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
@@ -141,15 +147,16 @@
 
 <!--JAVASCRIPT REFERENCES-->
     <script src="https://d3js.org/d3.v6.min.js"></script> 
-
+    
+   
+    <script src='../static/js/bar_chart.js'></script>
     <script src="../static/js/config.js"></script>
     <script src="../static/js/data_temp.js"></script>
     <script src="../static/js/format_maps.js"></script>
     <script src="../static/js/in_out_map.js"></script>
     <script src="../static/js/top_places_map.js"></script>
     <script src="../static/js/main_logic.js"></script>
-    <script src='../src/js/bar_chart.js'></script>
-   
+    
 
 <footer class="blog-footer">
   <p>Project built by Gamma Team.</p>

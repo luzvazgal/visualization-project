@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify, redirect
+import json
 from flask_pymongo import PyMongo
-import pymongo
 import app1_psL #to change depend of file
 # import atlas_obscura_scraper_psL #to change depend file
 
@@ -22,39 +22,21 @@ mongo3 = PyMongo(app, uri="mongodb://another.host:27017/scraping")
 @app.route("/")
 def index():
 
-    tourism=mongo1.db.tourism.find_one()
+    tourism=mongo1.db.tourism
     
     
     mylist=app1_psL.data_OCEDE()
 
-
     for item in mylist:
-        mongo1.db.tourism.update(
-            {},
-            item,
-            upsert=True
-        )
-    #the output of the info is strange need to verify
-
-
-   # coords_dict=app1_psL.coordinates()
-
-   # db.country_coords.insert_many(coords_dict)
-
-    countries=mongo1.db.tourism.find_one()
-    #
-   # coordenates=jsonify(db.country_coords.find_all())
-    print(countries)
+        tourism.update({}, item, upsert=True)
+    
+    countries=tourism.find()
+    #Is necesary create more def with diferent methods 'get', 'render' 
+    
+    
 
     
-    return render_template('index.html', countries=countries) #coordenates=coordenates)
+    return render_template('index.html', countries=countries)#coordenates=coordenates)
 
-
-
-##Call and import A (python file with code )
-##Store the return value in Mongo as a Python dictionary
-
-
-
-if __name__=='__main__':
+if __name__ == "__main__":
     app.run(debug=True)

@@ -252,7 +252,7 @@ def data_OCEDE():
         mylist.append(finaldata)
 
         
-        return mylist
+    return mylist
 
 
 

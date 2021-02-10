@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, redirect
 from flask_pymongo import PyMongo
 import A #[name_pythonfilefile_data]
-import B #[name_pythonfile_data2]
+# import B #[name_pythonfile_data2]
 
 #Instance of Flask app
 app=Flask(_name_)

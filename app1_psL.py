@@ -55,7 +55,7 @@ def data_OCEDE():
     file_turkey="data/turkey.csv"
     file_usa="data/united_states.csv"
 
-    file_coordinates="data/coordinates.csv"
+    
 
     country_names=["Australia","Austria","Colombia","Costa Rica","Croatia","Estonia","Finland","France","Germany","Greece","Hungary",
                 "Italy","Latvia","Malta","Netherlands","New Zealand","Norway","Peru","Poland","Romania","Russia","Slovenia",
@@ -259,6 +259,7 @@ def data_OCEDE():
 
 def coordinates():
     #Adding CSV with coordinates
+    file_coordinates="data/coordinates.csv"
     coords_df = pd.read_csv(file_coordinates, sep='\t')
     coords_dict=coords_df.to_dict(orient='records')
 

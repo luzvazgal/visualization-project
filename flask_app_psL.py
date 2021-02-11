@@ -2,12 +2,7 @@ from flask import Flask, render_template, jsonify, redirect
 import json
 from flask_pymongo import PyMongo
 from bson.json_util import dumps, loads
-import app1_psL
 import pymongo
-
- #to change depend of file
-# import atlas_obscura_scraper_psL #to change depend file
-
 
 # Instance of Flask app
 app=Flask(__name__)

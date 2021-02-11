@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pymongo
 
+
 def number_list(list_i):
         var_def=list_i
         var_def=np.nan_to_num(var_def).tolist()
@@ -268,16 +269,18 @@ def coordinates():
 
 
 mylist=data_OCEDE()
-#coords_dict=coordinates()
+coords_dict=coordinates()
 
 conn = 'mongodb+srv://user1:1234@cluster0.oi7pu.mongodb.net/turismo?retryWrites=true&w=majority'
 client = pymongo.MongoClient(conn)
-db = client['turismo']
-collection=db['turismo']
+db = client['tourismDB']
+collectionTourism=db['tourismDB']
+collectionCoordenates=db['coordenates']
+
 #crear distintas colleciones con
 
 for item in mylist:
-   collection.insert_one(item)
+   collectionTourism.insert_one(item)
 
 
-# db.country_coords.insert_many(coords_dict)
+collectionCoordenates.insert_many(coords_dict)

@@ -31,8 +31,8 @@ async function InOutMap_init(){
 
     //Clearing preselected information
     clearData();
+
     
-    in_out_map.setView(coords, 1);
 
     //Getting inbound and outbond countries as arrays
     getGeoJsonData(Object.keys(inbound_countries), Object.keys(outbound_countries));
@@ -47,6 +47,10 @@ function getGeoJsonData(in_countries_list, out_countries_list){
     //Reading geojson file containing all countries coordinate  
     d3.json(geojson_file).then(geoJsondata=>{
     
+        console.log("in out")
+    console.log(coords)
+    
+    in_out_map.setView(coords, 2);
         //Getting geoJSON records from selected country, inbound and outbound countries.
         geoJsondata.features.map(record=>{
             

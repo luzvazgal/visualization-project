@@ -36,7 +36,7 @@ async function TopPlacesMap_init(){
 function setCountryTopPlaces(){
 
 
-    d3.json('../../data/countries.json').then(countryJSON=>
+    d3.json('/lugares').then(countryJSON=>
     {
 
         //Get selected country's top places

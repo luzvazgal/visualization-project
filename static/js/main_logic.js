@@ -1,11 +1,9 @@
 /**VARIABLES DEFINITION */
+var data;                                   //Getting data from JSON file
 var selected_country;                       //User selected country
 var inbound_countries, outbound_countries;  //Inbound and outbound countries of user's selected country
 var years;                                  //Years of selected country
 var coords;                                 //Selected country coordinates
-//var country_top_places;                     //Selected country top places
-var index;
-
 
 
 /**
@@ -15,7 +13,6 @@ var index;
 function setCountryData(){
 
     //Getting user's selection
-    //selected_country = d3.select(this).property('value'); 
     selected_country = d3.select('#Country_select').property('value'); 
 
     //Getting user's selected country related data
@@ -40,21 +37,26 @@ function setCountryData(){
 function getData(){
 
     let select = d3.select("#Country_select");
+    console.log("entro")
 
-    //Getting countries list from data
-    let countries_list = data.map(record=>{
+    d3.json('/turismo').then(countryJSON=>{
 
-        //console.log(Object.keys(record)[0]);
-        return record['name'];
-    } )
+        data = countryJSON;
+        //Getting countries list from data
+        let countries_list = countryJSON.map(record=>{
+            
+            return record['name'];
+        } )
 
-    //Adding empty option
-    select.append("option").text("").attr("value", "");
+        //Adding empty option
+        select.append("option").text("").attr("value", "");
 
-    //Adding each country as an option text and value
-    countries_list.forEach(country=>{
-        
-        select.append("option").text(country).attr("value", country);
+        //Adding each country as an option text and value
+        countries_list.forEach(country=>{
+            
+            select.append("option").text(country).attr("value", country);
+        }
+        )
     }
     )
    
@@ -67,8 +69,9 @@ d3.selectAll("#Country_select").on('change', function(){
     setCountryData( );
 
      //Setting selected country coordinates from JSON collection
-     d3.json('../../data/coords.json').then(coordsJSON=>{
+     d3.json('/coordenadas').then(coordsJSON=>{
     
+        
         for(let i=0; i<coordsJSON.length; i++){
             if(coordsJSON[i].name == selected_country){
                 coords = [coordsJSON[i].latitude, coordsJSON[i].longitude] ;
@@ -88,9 +91,6 @@ d3.selectAll("#Country_select").on('change', function(){
     )
     .catch(error=>console.log(error))
 
-   
-    
-    
 });
 
 

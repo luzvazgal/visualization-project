@@ -1,3 +1,5 @@
+
+  
 # Dependencies and Setup
 import pandas as pd
 import numpy as np
@@ -276,11 +278,18 @@ client = pymongo.MongoClient(conn)
 db = client['tourismDB']
 collectionTourism=db['tourismDB']
 collectionCoordenates=db['coordenates']
+<<<<<<< HEAD
+
+#crear distintas colleciones con
+=======
 
 #crear distintas colleciones con
 
 for item in mylist:
    collectionTourism.insert_one(item)
+>>>>>>> c977c835e8cdc782c2042af13e01856b366969bd
 
+#for item in mylist:
+  # collectionTourism.insert_one(item)
 
 collectionCoordenates.insert_many(coords_dict)

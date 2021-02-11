@@ -29,9 +29,7 @@ function setCountryData(){
         inbound_countries = record['top_markets'];
         outbound_countries = record['top_destinations'];
     }
-    )
-
-   
+    )   
 }
 
 

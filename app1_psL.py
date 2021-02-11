@@ -267,14 +267,17 @@ def coordinates():
     return coords_dict
 
 
+mylist=data_OCEDE()
+#coords_dict=coordinates()
 
-# conn = 'mongodb://localhost:27017'
-# client = pymongo.MongoClient(conn)
-# db = client.tourismdb
+conn = 'mongodb+srv://user1:1234@cluster0.oi7pu.mongodb.net/turismo?retryWrites=true&w=majority'
+client = pymongo.MongoClient(conn)
+db = client['turismo']
+collection=db['turismo']
+#crear distintas colleciones con
 
-# for item in mylist:
-#     db.tourismdb.insert_one(item)
-
+for item in mylist:
+   collection.insert_one(item)
 
 
 # db.country_coords.insert_many(coords_dict)

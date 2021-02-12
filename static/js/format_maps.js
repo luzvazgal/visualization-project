@@ -28,10 +28,9 @@ function  addLegend(){
 /**
  * Paints a country given a geoJson record and a type. Depending on whether it's the selected country, inbound or outbound tourism
  * 
- * @param {geoJson} record 
  * @param {string} type 
  */
-function paintCountry(record, type){
+function paintCountry(type){
 
     //console.log("paint country");
 
@@ -44,8 +43,6 @@ function paintCountry(record, type){
         fillOpacity: type=='Country'? 1 : 0.4
         };
 
-
     return style;   
 }
-
 

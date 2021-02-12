@@ -1,8 +1,6 @@
 
 //Variables Definition to assigned geoJSON records for selected country, and its corresponding inbound and outbound countries.
 let geoJSON_selected_country;
-//let geoJSON_inbound_countries =[]; 
-//let geoJSON_outbound_countries = [];
 
 
 let geoJSON_layer_group = new L.LayerGroup();    //Adding all geoJSON layers in a group
@@ -32,8 +30,6 @@ async function InOutMap_init(){
     //Clearing preselected information
     clearData();
 
-    
-
     //Getting inbound and outbond countries as arrays
     getGeoJsonData(Object.keys(inbound_countries), Object.keys(outbound_countries));
 };
@@ -47,8 +43,6 @@ function getGeoJsonData(in_countries_list, out_countries_list){
     //Reading geojson file containing all countries coordinate  
     d3.json(geojson_file).then(geoJsondata=>{
     
-        console.log("in out")
-    console.log(coords)
     
     in_out_map.setView(coords, 2);
         //Getting geoJSON records from selected country, inbound and outbound countries.
@@ -64,7 +58,7 @@ function getGeoJsonData(in_countries_list, out_countries_list){
                geoJSON_selected_country = record;
 
                 //Adding geoJson layer representing a selected country in map
-                geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry(record, labels[0])));
+                geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry( labels[0])));
             }
             
             //Iterating on inbound countries list 
@@ -77,7 +71,7 @@ function getGeoJsonData(in_countries_list, out_countries_list){
                  
 
                    //Adding geoJson layer representing an outbound country in map
-                   geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry(record, labels[1])));
+                   geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry(labels[1])));
     
                     //Adding record (country) to already_painted array 
                     already_painted.push(record);
@@ -93,10 +87,10 @@ function getGeoJsonData(in_countries_list, out_countries_list){
                 if(geoJson_country == country){
                    
                     if(already_painted.includes(record)){
-                        geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry(record, labels[3])));
+                        geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry(labels[3])));
                     }
                     else{
-                        geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry(record, labels[2])));
+                        geoJSON_layer_group.addLayer(L.geoJson(record, paintCountry(labels[2])));
                         //Adding record (country) to already_painted array 
                         already_painted.push(record);
                     }           

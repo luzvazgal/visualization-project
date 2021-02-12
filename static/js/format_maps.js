@@ -41,8 +41,9 @@ function paintCountry(record, type){
         opacity: type=='Country'? 1 : 0.5,
         color: 'white',
         dashArray: '3',
-        fillOpacity: 0.9
+        fillOpacity: type=='Country'? 1 : 0.4
         };
+
 
     return style;   
 }
